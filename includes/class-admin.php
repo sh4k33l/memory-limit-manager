@@ -674,21 +674,21 @@ class Memory_Manager_WP_Admin {
 				
 				<!-- Footer Credits -->
 				<div style="margin-top: 40px; padding: 20px; text-align: center; border-top: 2px solid #e8eaed;">
-					<p style="margin: 0; color: #5f6368; font-size: 14px;">
-						<strong><?php esc_html_e( 'Memory Limit Manager', 'memory-limit-manager' ); ?></strong> 
-						<?php esc_html_e( 'by', 'memory-limit-manager' ); ?> 
-						<a href="https://muhammadshakeel.com/" target="_blank" rel="noopener" style="color: #2271b1; text-decoration: none; font-weight: 600;">Muhammad Shakeel</a>
-					</p>
-					<p style="margin: 8px 0 0 0; font-size: 13px; color: #999;">
-						<a href="https://muhammadshakeel.com/memory-limit-manager/" target="_blank" rel="noopener" style="color: #999; text-decoration: none;"><?php esc_html_e( 'Plugin Page', 'memory-limit-manager' ); ?></a>
-						<span style="margin: 0 8px;">•</span>
-						<a href="https://muhammadshakeel.com/" target="_blank" rel="noopener" style="color: #999; text-decoration: none;"><?php esc_html_e( 'Get Support', 'memory-limit-manager' ); ?></a>
-						<span style="margin: 0 8px;">•</span>
-						<?php 
-						/* translators: %s: Plugin version number */
-						printf( esc_html__( 'Version %s', 'memory-limit-manager' ), esc_html( MEMORY_MANAGER_WP_VERSION ) ); 
-						?>
-					</p>
+				<p style="margin: 0; color: #5f6368; font-size: 14px;">
+					<strong><?php esc_html_e( 'Memory Limit Manager', 'memory-limit-manager' ); ?></strong> 
+					<?php esc_html_e( 'by', 'memory-limit-manager' ); ?> 
+					<a href="<?php echo esc_url( 'https://muhammadshakeel.com/' ); ?>" target="_blank" rel="noopener" style="color: #2271b1; text-decoration: none; font-weight: 600;">Muhammad Shakeel</a>
+				</p>
+				<p style="margin: 8px 0 0 0; font-size: 13px; color: #999;">
+					<a href="<?php echo esc_url( 'https://muhammadshakeel.com/memory-limit-manager/' ); ?>" target="_blank" rel="noopener" style="color: #999; text-decoration: none;"><?php esc_html_e( 'Plugin Page', 'memory-limit-manager' ); ?></a>
+					<span style="margin: 0 8px;">•</span>
+					<a href="<?php echo esc_url( 'https://muhammadshakeel.com/' ); ?>" target="_blank" rel="noopener" style="color: #999; text-decoration: none;"><?php esc_html_e( 'Get Support', 'memory-limit-manager' ); ?></a>
+					<span style="margin: 0 8px;">•</span>
+					<?php 
+					/* translators: %s: Plugin version number */
+					printf( esc_html__( 'Version %s', 'memory-limit-manager' ), esc_html( MEMORY_MANAGER_WP_VERSION ) ); 
+					?>
+				</p>
 				</div>
 			</div>
 		</div>
