@@ -51,26 +51,11 @@ First stable release of Memory Limit Manager, ready for submission.
 
 ### 🛠️ Technical
 
-- **WordPress Compatibility:** 6.0 - 6.9
+- **WordPress Compatibility:** 6.0 - 6.7+
 - **PHP Compatibility:** 7.4, 8.0, 8.1, 8.2, 8.3
-- **Text Domain:** memory-manager-wp
+- **Text Domain:** memory-limit-manager
 - **License:** GPL v2 or later
 - **Coding Standards:** WordPress Coding Standards compliant
-- **Plugin Check:** Passed all WordPress.org Plugin Check validations
-
-### 🎯 WordPress.org Submission Notes
-
-This version has been specifically prepared for WordPress.org submission with:
-- Resolved all trademark issues with WordPress.org naming guidelines
-- Fixed all security/escaping issues
-- Removed all debug code (error_log, print_r)
-- Replaced PHP functions with WordPress alternatives where required
-- Added translator comments for all i18n strings
-- Used ordered placeholders (%1$s, %2$s) for translations
-- Created proper readme.txt file
-- Created languages folder for translations
-- Removed all unnecessary files (.gitignore, extra .md files)
-- Set version to 1.0.0 for initial release
 
 ---
 
