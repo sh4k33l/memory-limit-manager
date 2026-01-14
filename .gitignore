@@ -1,0 +1,53 @@
+# WordPress
+*.log
+wp-config.php
+wp-content/advanced-cache.php
+wp-content/backup-db/
+wp-content/backups/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/
+
+# Plugin specific
+/backups/
+wp-config-backup-*.php
+
+# Development
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.settings/
+nbproject/
+
+# Composer
+/vendor/
+composer.lock
+
+# Node
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+
+# OS Files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Temporary files
+*.tmp
+*.temp
+.cache
+
+# Testing
+phpunit.xml
+/tests/
+/test-results/
+
+# Logs
+error_log
+debug.log
