@@ -66,7 +66,7 @@ class Memory_Manager_WP_Admin {
 	public function handle_form_submission() {
 		// Check nonce
 		if ( ! isset( $_POST['memory_limit_manager_nonce'] ) || 
-		     ! wp_verify_nonce( wp_unslash( $_POST['memory_limit_manager_nonce'] ), 'memory_limit_manager_save' ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		     ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['memory_limit_manager_nonce'] ) ), 'memory_limit_manager_save' ) ) {
 			wp_die( esc_html__( 'Security check failed. Please try again.', 'memory-limit-manager' ), esc_html__( 'Security Error', 'memory-limit-manager' ), array( 'back_link' => true ) );
 		}
 		
