@@ -395,7 +395,15 @@ class Memory_Manager_WP_Admin {
 								<span class="dashicons dashicons-warning"></span>
 								<div>
 									<strong><?php esc_html_e( 'Warning:', 'memory-limit-manager' ); ?></strong>
-									<?php esc_html_e( 'This will modify your wp-config.php file. Make sure you have a backup before proceeding.', 'memory-limit-manager' ); ?>
+									<?php esc_html_e( 'This will modify your wp-config.php file. A timestamped backup will be created automatically before any changes.', 'memory-limit-manager' ); ?>
+								</div>
+							</div>
+							
+							<div class="mlm-info-box" style="background: #e8f5e9; border-left: 4px solid #4caf50; margin-top: 15px; margin-bottom: 15px;">
+								<span class="dashicons dashicons-shield" style="color: #4caf50;"></span>
+								<div>
+									<strong><?php esc_html_e( 'Automatic Safety Backup:', 'memory-limit-manager' ); ?></strong>
+									<p style="margin: 8px 0 0 0; font-size: 13px;"><?php esc_html_e( 'Your wp-config.php file will be automatically backed up before any changes. Backup files are saved as wp-config.php.backup-YYYY-MM-DD-HHMMSS in the same directory. The 5 most recent backups are kept. If anything goes wrong, your original file is automatically restored.', 'memory-limit-manager' ); ?></p>
 								</div>
 							</div>
 							
@@ -680,9 +688,9 @@ class Memory_Manager_WP_Admin {
 					<a href="<?php echo esc_url( 'https://muhammadshakeel.com/' ); ?>" target="_blank" rel="noopener" style="color: #2271b1; text-decoration: none; font-weight: 600;">Muhammad Shakeel</a>
 				</p>
 				<p style="margin: 8px 0 0 0; font-size: 13px; color: #999;">
-					<a href="<?php echo esc_url( 'https://muhammadshakeel.com/memory-limit-manager/' ); ?>" target="_blank" rel="noopener" style="color: #999; text-decoration: none;"><?php esc_html_e( 'Plugin Page', 'memory-limit-manager' ); ?></a>
+					<a href="<?php echo esc_url( 'https://wordpress.org/plugins/memory-limit-manager/' ); ?>" target="_blank" rel="noopener" style="color: #999; text-decoration: none;"><?php esc_html_e( 'Plugin Page', 'memory-limit-manager' ); ?></a>
 					<span style="margin: 0 8px;">•</span>
-					<a href="<?php echo esc_url( 'https://muhammadshakeel.com/' ); ?>" target="_blank" rel="noopener" style="color: #999; text-decoration: none;"><?php esc_html_e( 'Get Support', 'memory-limit-manager' ); ?></a>
+					<a href="<?php echo esc_url( 'https://wordpress.org/support/plugin/memory-limit-manager/' ); ?>" target="_blank" rel="noopener" style="color: #999; text-decoration: none;"><?php esc_html_e( 'Get Support', 'memory-limit-manager' ); ?></a>
 					<span style="margin: 0 8px;">•</span>
 					<?php 
 					/* translators: %s: Plugin version number */

@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: Memory Limit Manager
- * Plugin URI: https://muhammadshakeel.com/memory-limit-manager/
+ * Plugin URI: https://wordpress.org/plugins/memory-limit-manager/
  * Description: Easily manage memory limits (WP_MEMORY_LIMIT and WP_MAX_MEMORY_LIMIT) through a beautiful admin interface with advanced conflict detection.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Tested up to: 6.9
@@ -59,7 +59,7 @@ function memory_limit_manager_check_requirements() {
 register_activation_hook( __FILE__, 'memory_limit_manager_check_requirements' );
 
 // Define plugin constants
-define( 'MEMORY_MANAGER_WP_VERSION', '1.0.0' );
+define( 'MEMORY_MANAGER_WP_VERSION', '1.0.1' );
 define( 'MEMORY_MANAGER_WP_PLUGIN_FILE', __FILE__ );
 define( 'MEMORY_MANAGER_WP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MEMORY_MANAGER_WP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );

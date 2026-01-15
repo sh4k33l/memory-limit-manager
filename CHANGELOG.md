@@ -2,6 +2,31 @@
 
 All notable changes to Memory Limit Manager will be documented in this file.
 
+## [1.0.1] - 2026-01-15
+
+### 🔗 Improved
+
+#### Links & References
+- Updated all plugin links to point to official WordPress.org pages
+- Plugin Page footer link now directs to wordpress.org/plugins/memory-limit-manager/
+- Get Support footer link now directs to wordpress.org/support/plugin/memory-limit-manager/
+- Updated Plugin URI in main plugin header
+- Updated support links in readme.txt and README.md
+
+#### Visual Assets
+- Improved retina banner (1544×500) quality using ImageMagick
+- Enhanced banner sharpness for better display on high-DPI screens
+
+#### Documentation & Clarity
+- Enhanced automatic backup feature documentation to clarify it backs up wp-config.php only (not entire site)
+- Added detailed backup file naming format explanation (wp-config.php.backup-YYYY-MM-DD-HHMMSS)
+- Clarified that 5 most recent backups are kept automatically
+- Added new "Automatic Backup System" section in readme.txt
+- Updated FAQ to explain backup functionality in detail
+- Updated admin UI warning message to mention automatic backup creation
+- Added prominent green "Automatic Safety Backup" info box in admin interface
+- New FAQ: "What exactly gets backed up?" to prevent confusion
+
 ## [1.0.0] - 2026-01-07
 
 ### 🎉 Initial Public Release
@@ -77,6 +102,6 @@ First stable release of Memory Limit Manager, ready for submission.
 
 **Note:** This is the first public release. Future versions will maintain backward compatibility and follow semantic versioning.
 
-**Download:** Available on WordPress.org  
-**Support:** https://muhammadshakeel.com/  
+**Download:** https://wordpress.org/plugins/memory-limit-manager/  
+**Support:** https://wordpress.org/support/plugin/memory-limit-manager/  
 **Documentation:** Full documentation included in plugin

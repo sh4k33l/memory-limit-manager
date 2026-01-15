@@ -8,7 +8,7 @@ A beautiful and user-friendly plugin to easily manage memory limits (`WP_MEMORY_
 📊 **Real-time Status** - View current memory limits at a glance  
 🎯 **Quick Presets** - One-click presets for common configurations  
 ✅ **Smart Validation** - Real-time input validation and error checking  
-🔒 **Safe Updates** - Automatic backups before modifying wp-config.php  
+🔒 **Safe Updates** - Automatic wp-config.php backups (timestamped, keeps 5 most recent, auto-restores on failure)  
 ⚡ **Opcode Cache Clearing** - Changes take effect immediately  
 🔍 **Conflict Detection** - Identifies if limits are defined elsewhere  
 📋 **Manual Fallback** - Copy-paste code if automatic update fails  
@@ -128,7 +128,8 @@ GPL v2 or later - [https://www.gnu.org/licenses/gpl-2.0.html](https://www.gnu.or
 
 **Muhammad Shakeel**  
 Website: [https://muhammadshakeel.com/](https://muhammadshakeel.com/)  
-Plugin Page: [https://muhammadshakeel.com/memory-limit-manager/](https://muhammadshakeel.com/memory-limit-manager/)
+Plugin Page: [https://wordpress.org/plugins/memory-limit-manager/](https://wordpress.org/plugins/memory-limit-manager/)  
+Support: [https://wordpress.org/support/plugin/memory-limit-manager/](https://wordpress.org/support/plugin/memory-limit-manager/)
 
 ## Changelog
 

@@ -4,7 +4,7 @@ Tags: memory, memory limit, wp-config, performance, optimization
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ Memory Limit Manager makes it incredibly easy to configure your memory limits wi
 
 * **One-Click Updates** - Change memory limits with a single button click
 * **Quick Presets** - Common configurations (128M/256M, 256M/512M, 512M/1G, 1G/2G)
-* **Automatic Backups** - Creates timestamped backups before any changes
+* **Automatic wp-config.php Backups** - Creates timestamped backups of your wp-config.php file before any changes (format: wp-config.php.backup-YYYY-MM-DD-HHMMSS). Keeps 5 most recent backups and auto-restores on failure
 * **Conflict Detection** - Identifies if memory limits are defined elsewhere
 * **System Diagnostics** - File permissions and writability checks
 * **Manual Fallback** - Copy-paste code if automatic updates don't work
@@ -45,6 +45,18 @@ Increasing these values can help resolve:
 - Plugin/theme activation failures
 - Image upload problems
 - Slow admin performance
+
+= Automatic Backup System =
+
+For your safety, the plugin automatically backs up your **wp-config.php file** before making any changes:
+
+* **Backup File Format**: wp-config.php.backup-2026-01-15-223045 (timestamped)
+* **Location**: Same directory as your wp-config.php file
+* **Number of Backups**: Keeps the 5 most recent backups, auto-deletes older ones
+* **Automatic Restore**: If any error occurs during update, your original wp-config.php is automatically restored
+* **Manual Restore**: You can manually restore any backup file via FTP/cPanel if needed
+
+This means you can update memory limits with confidence, knowing your configuration is always protected.
 
 = Security =
 
@@ -93,15 +105,23 @@ Yes, as long as your wp-config.php file is writable. Most hosting providers allo
 
 = Can I undo changes? =
 
-Yes! The plugin creates automatic backups before making any changes. You can manually restore from these backups if needed.
+Absolutely! The plugin automatically backs up your **wp-config.php file** (not your entire site) before making any changes. 
+
+Backup files are named like: wp-config.php.backup-2026-01-15-223045
+
+You can find them in the same directory as your wp-config.php file. The plugin keeps the 5 most recent backups. To restore manually, simply rename a backup file back to wp-config.php via FTP or cPanel File Manager.
 
 = What if automatic updates don't work? =
 
 No problem! The plugin provides a manual configuration option with copy-paste code that you can add to wp-config.php via FTP or cPanel.
 
+= What exactly gets backed up? =
+
+Only your **wp-config.php file** is backed up - NOT your entire site, database, or other files. This is a safety measure specific to the configuration file that gets modified. The backup happens automatically every time you update memory limits.
+
 = Is it safe to use? =
 
-Absolutely! The plugin follows WordPress security best practices, creates automatic backups, and validates all input before making changes.
+Absolutely! The plugin follows WordPress security best practices, creates automatic wp-config.php backups, and validates all input before making changes. If anything goes wrong during an update, your original wp-config.php is automatically restored.
 
 = Does it work with multisite? =
 
@@ -121,14 +141,24 @@ Use the Quick Presets as a starting point:
 
 == Screenshots ==
 
-1. Main admin interface with current status and update form
-2. Quick Preset buttons for common configurations
-3. System Diagnostics showing file permissions and status
-4. Success message after updating memory limits
-5. Conflict detection and resolution guidance
-6. Manual configuration option as fallback
+1. Update Memory Limits form with input fields, quick preset buttons, and clear warnings before making changes
+2. Current Memory Status dashboard showing WP_MEMORY_LIMIT, WP_MAX_MEMORY_LIMIT, and PHP_MEMORY_LIMIT with beautiful color-coded cards
+3. System Diagnostics showing wp-config.php location, file permissions, writability status, and real-time values comparison
+4. Help & Documentation section explaining what each memory constant does and recommended values for different site sizes
 
 == Changelog ==
+
+= 1.0.1 - 2026-01-15 =
+* Updated all plugin links to point to official WordPress.org pages
+* Plugin Page now links to wordpress.org/plugins/memory-limit-manager/
+* Support links now direct to wordpress.org support forum
+* Improved banner quality for retina displays
+* Enhanced automatic backup feature documentation (clarifies wp-config.php backup, not entire site)
+* Added detailed backup file naming format and retention policy (5 most recent)
+* New "Automatic Backup System" section in description
+* Updated FAQ with backup-specific questions
+* Added prominent "Automatic Safety Backup" info box in admin interface
+* Updated admin warning message to mention automatic backup creation
 
 = 1.0.0 - 2026-01-07 =
 * Initial public release
@@ -152,7 +182,7 @@ Initial release of Memory Limit Manager. A safe, easy way to manage your memory 
 
 == Support ==
 
-For support, please visit: https://muhammadshakeel.com/
+For support, please visit: https://wordpress.org/support/plugin/memory-limit-manager/
 
 == Developer ==
 
