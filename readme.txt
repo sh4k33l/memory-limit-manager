@@ -67,7 +67,7 @@ This means you can update memory limits with confidence, knowing your configurat
 
 = Documentation =
 
-Full documentation is available in the plugin's README.md file and at the plugin website.
+Documentation is available here: https://muhammadshakeel.com/memory-limit-manager-documentation/
 
 == Installation ==
 
