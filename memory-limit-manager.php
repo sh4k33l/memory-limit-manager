@@ -6,7 +6,7 @@
  * Version: 1.0.1
  * Requires at least: 6.0
  * Requires PHP: 7.4
- * Tested up to: 6.9
+ * Tested up to: 7.0
  * Author: Muhammad Shakeel
  * Author URI: https://muhammadshakeel.com/
  * License: GPL v2 or later
