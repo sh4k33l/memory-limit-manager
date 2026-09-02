@@ -142,14 +142,21 @@ class Memory_Manager_WP_Config_Handler {
 		$verify_content = file_get_contents( $this->config_path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		
 		// Check if our defines are actually in the file now
-		$wp_memory_found = ( stripos( $verify_content, "define( 'WP_MEMORY_LIMIT', '{$wp_memory_limit}' )" ) !== false );
-		$wp_max_memory_found = ( stripos( $verify_content, "define( 'WP_MAX_MEMORY_LIMIT', '{$wp_max_memory_limit}' )" ) !== false );
+		$wp_memory_found = false !== $verify_content && ( stripos( $verify_content, "define( 'WP_MEMORY_LIMIT', '{$wp_memory_limit}' )" ) !== false );
+		$wp_max_memory_found = false !== $verify_content && ( stripos( $verify_content, "define( 'WP_MAX_MEMORY_LIMIT', '{$wp_max_memory_limit}' )" ) !== false );
 		
 		if ( ! $wp_memory_found || ! $wp_max_memory_found ) {
-			// The defines weren't added properly
+			// The defines weren't added properly, so restore the original file.
+			$restored = copy( $backup_path, $this->config_path );
+			if ( $restored ) {
+				$this->delete_backup_file( $backup_path );
+			}
+			
 			return new WP_Error(
 				'defines_not_added',
-				__( 'File was written but defines were not added correctly. The file may have an unusual format. Check the backup file and try manual configuration.', 'memory-limit-manager' )
+				$restored
+					? __( 'The updated file could not be verified, so the original wp-config.php file was restored. Try the manual configuration option.', 'memory-limit-manager' )
+					: __( 'The updated file could not be verified and the backup could not be restored automatically. Restore the backup file manually before trying again.', 'memory-limit-manager' )
 			);
 		}
 		
@@ -208,75 +215,68 @@ class Memory_Manager_WP_Config_Handler {
 	 */
 	private function update_or_add_define( $content, $constant_name, $value ) {
 		$define_line = "define( '{$constant_name}', '{$value}' );";
+		$define_pattern = "/define\\s*\\(\\s*(['\"])" . preg_quote( $constant_name, '/' ) . "\\1\\s*,\\s*(['\"])[^'\"]*\\2\\s*\\)\\s*;?/i";
+		
+		// Replace only the define statement so adjacent code and comments survive.
+		if ( preg_match( $define_pattern, $content ) ) {
+			$updated_content = preg_replace( $define_pattern, $define_line, $content, 1 );
+			return null !== $updated_content ? $updated_content : $content;
+		}
 		
 		// Split content into lines for line-by-line processing
 		$lines = explode( "\n", $content );
 		$total_lines = count( $lines );
 		
-		// Step 1: Check if constant already exists and update it
-		$found_existing = false;
+		// If not found, add it before the appropriate line.
+		$insertion_index = false;
+		
+		// Try to find "That's all" comment
 		for ( $i = 0; $i < $total_lines; $i++ ) {
-			// Match any define for this constant
-			if ( preg_match( "/define\s*\(\s*['\"]" . preg_quote( $constant_name, '/' ) . "['\"]/i", $lines[ $i ] ) ) {
-				// Replace the entire line
-				$lines[ $i ] = $define_line;
-				$found_existing = true;
+			if ( stripos( $lines[ $i ], "That's all" ) !== false ||
+				stripos( $lines[ $i ], 'stop editing' ) !== false ) {
+				$insertion_index = $i;
 				break;
 			}
 		}
 		
-		// Step 2: If not found, add it before the appropriate line
-		if ( ! $found_existing ) {
-			$insertion_index = false;
-			
-			// Try to find "That's all" comment
+		// If not found, try to find require wp-settings.php
+		if ( $insertion_index === false ) {
 			for ( $i = 0; $i < $total_lines; $i++ ) {
-				if ( stripos( $lines[ $i ], "That's all" ) !== false || 
-				     stripos( $lines[ $i ], 'stop editing' ) !== false ) {
+				if ( stripos( $lines[ $i ], 'wp-settings.php' ) !== false ) {
 					$insertion_index = $i;
 					break;
 				}
 			}
-			
-			// If not found, try to find require wp-settings.php
-			if ( $insertion_index === false ) {
-				for ( $i = 0; $i < $total_lines; $i++ ) {
-					if ( stripos( $lines[ $i ], 'wp-settings.php' ) !== false ) {
-						$insertion_index = $i;
-						break;
-					}
-				}
-			}
-			
-			// If still not found, find the last define() and add after it
-			if ( $insertion_index === false ) {
-				for ( $i = $total_lines - 1; $i >= 0; $i-- ) {
-					if ( stripos( $lines[ $i ], 'define(' ) !== false || 
-					     stripos( $lines[ $i ], 'define (' ) !== false ) {
-						$insertion_index = $i + 1;
-						break;
-					}
-				}
-			}
-			
-			// If STILL not found, try before closing PHP tag
-			if ( $insertion_index === false ) {
-				for ( $i = $total_lines - 1; $i >= 0; $i-- ) {
-					if ( strpos( $lines[ $i ], '?>' ) !== false ) {
-						$insertion_index = $i;
-						break;
-					}
-				}
-			}
-			
-			// Last resort: add at the end
-			if ( $insertion_index === false ) {
-				$insertion_index = $total_lines;
-			}
-			
-			// Insert the define line
-			array_splice( $lines, $insertion_index, 0, array( '', $define_line ) );
 		}
+		
+		// If still not found, find the last define() and add after it
+		if ( $insertion_index === false ) {
+			for ( $i = $total_lines - 1; $i >= 0; $i-- ) {
+				if ( stripos( $lines[ $i ], 'define(' ) !== false ||
+					stripos( $lines[ $i ], 'define (' ) !== false ) {
+					$insertion_index = $i + 1;
+					break;
+				}
+			}
+		}
+		
+		// If STILL not found, try before closing PHP tag
+		if ( $insertion_index === false ) {
+			for ( $i = $total_lines - 1; $i >= 0; $i-- ) {
+				if ( strpos( $lines[ $i ], '?>' ) !== false ) {
+					$insertion_index = $i;
+					break;
+				}
+			}
+		}
+		
+		// Last resort: add at the end
+		if ( $insertion_index === false ) {
+			$insertion_index = $total_lines;
+		}
+		
+		// Insert the define line
+		array_splice( $lines, $insertion_index, 0, array( '', $define_line ) );
 		
 		// Rejoin lines
 		return implode( "\n", $lines );

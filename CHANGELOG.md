@@ -2,12 +2,17 @@
 
 All notable changes to Memory Limit Manager will be documented in this file.
 
-## [1.0.2] - 2026-05-05
+## [1.0.2] - 2026-09-02
 
-### ✅ Compatibility
-- Tested the plugin against WordPress 7.0
-- Confirmed compatibility with WordPress 7.0
-- Updated plugin metadata (`Tested up to`) to 7.0 in plugin headers and documentation
+### Fixed
+
+- Restored the original `wp-config.php` file when post-write verification fails
+- Preserved adjacent code and comments when updating existing memory-limit definitions
+- Clarified that newly saved limits apply to subsequent requests
+
+### Compatibility
+
+- Confirmed compatibility with WordPress 7.1
 
 ## [1.0.1] - 2026-01-15
 

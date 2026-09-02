@@ -2,9 +2,9 @@
 Contributors: shak33l
 Tags: memory, memory limit, wp-config, performance, optimization
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -148,6 +148,12 @@ Use the Quick Presets as a starting point:
 
 == Changelog ==
 
+= 1.0.2 - 2026-09-02 =
+* Confirmed compatibility with WordPress 7.1
+* Restores the original wp-config.php file when post-write verification fails
+* Preserves adjacent code and comments when updating existing memory-limit definitions
+* Clarified when newly saved memory limits take effect
+
 = 1.0.1 - 2026-01-15 =
 * Updated all plugin links to point to official WordPress.org pages
 * Plugin Page now links to wordpress.org/plugins/memory-limit-manager/
@@ -177,6 +183,9 @@ Use the Quick Presets as a starting point:
 
 == Upgrade Notice ==
 
+= 1.0.2 =
+Recommended reliability update with WordPress 7.1 compatibility.
+
 = 1.0.0 =
 Initial release of Memory Limit Manager. A safe, easy way to manage your memory limits!
 
@@ -189,4 +198,3 @@ For support, please visit: https://wordpress.org/support/plugin/memory-limit-man
 Memory Limit Manager is developed and maintained by Muhammad Shakeel.
 
 Website: https://muhammadshakeel.com/
-

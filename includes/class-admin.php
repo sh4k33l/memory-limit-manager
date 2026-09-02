@@ -128,7 +128,7 @@ class Memory_Manager_WP_Admin {
 			// Clear attempted values on success
 			delete_transient( 'memory_limit_manager_attempted_values_' . $user_id );
 			
-			set_transient( 'memory_limit_manager_success_' . $user_id, __( 'Memory limits updated successfully in wp-config.php! The new values are now active sitewide and displayed in the "Current Memory Status" section below.', 'memory-limit-manager' ), 300 );
+			set_transient( 'memory_limit_manager_success_' . $user_id, __( 'Memory limits updated successfully in wp-config.php. The new values will be used on subsequent requests.', 'memory-limit-manager' ), 300 );
 			wp_safe_redirect( add_query_arg( array( 'status' => 'success', 'updated' => time() ), admin_url( 'options-general.php?page=memory-limit-manager' ) ) );
 			exit;
 		} else {

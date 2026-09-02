@@ -1,6 +1,6 @@
 # Release Runbook
 
-This repository is prepared for a WordPress plugin release (`memory-limit-manager`) and GitHub push.
+Current release: **1.0.2**, tested with WordPress 7.1 and published to WordPress.org on 2026-09-02.
 
 ## 1) Push to GitHub `main`
 
@@ -36,8 +36,8 @@ rsync -av --delete \
 svn status | awk '/^\?/ {print $2}' | xargs -r svn add
 svn status | awk '/^\!/ {print $2}' | xargs -r svn rm
 
-svn commit -m "Release 1.0.2: update Tested up to 7.0 and changelog"
-svn copy trunk tags/1.0.2 -m "Tagging version 1.0.2"
+svn commit -m "Release <version>"
+svn copy trunk tags/<version> -m "Tagging version <version>"
 ```
 
 ## 3) Pre-release checks
@@ -57,4 +57,3 @@ find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -n1 php -l
   - `Stable tag:`
   - `Tested up to:`
 - `CHANGELOG.md` includes the release date and notes.
-
